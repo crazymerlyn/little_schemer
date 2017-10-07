@@ -12,3 +12,6 @@
         ((eq? a (car lat)) (cdr lat))
         (else (cons (car lat)
                     (rember a (cdr lat))))))
+(define (firsts l)
+  (cond ((null? l) '())
+        (else (cons (caar l) (firsts (cdr l))))))
