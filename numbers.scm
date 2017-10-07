@@ -18,3 +18,10 @@
 
 (define (mul n m)
   (if (zero? m) 0 (add n (mul n (sub1 m)))))
+
+
+(define (tup+ tup1 tup2)
+  (cond ((null? tup1) tup2)
+        ((null? tup2) tup1)
+        (else (cons (add (car tup1) (car tup2))
+                    (tup+ (cdr tup1) (cdr tup2))))))
