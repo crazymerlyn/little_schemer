@@ -59,3 +59,13 @@
   (cond ((null? l) (error "index too large -- pick"))
         ((zero? n) (cdr l))
         (else (cons (car l) (rempick (sub1 n) (cdr l))))))
+
+(define (no-nums lat)
+  (cond ((null? lat) '())
+        ((number? (car lat)) (no-nums (cdr lat)))
+        (else (cons (car lat) (no-nums (cdr lat))))))
+
+(define (all-nums lat)
+  (cond ((null? lat) '())
+        ((number? (car lat)) (cons (car lat) (all-nums (cdr lat))))
+        (else (all-nums (cdr lat)))))
