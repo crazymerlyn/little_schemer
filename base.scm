@@ -15,3 +15,13 @@
 (define (firsts l)
   (cond ((null? l) '())
         (else (cons (caar l) (firsts (cdr l))))))
+
+(define (insertR new old lat)
+  (cond ((null? lat) '())
+        ((eq? old (car lat)) (cons (car lat) (cons new (cdr lat))))
+        (else (cons (car lat) (insertR new old (cdr lat))))))
+
+(define (insertL new old lat)
+  (cond ((null? lat) '())
+        ((eq? old (car lat)) (cons new lat))
+        (else (cons (car lat) (insertL new old (cdr lat))))))
