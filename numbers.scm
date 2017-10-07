@@ -40,3 +40,9 @@
   (cond ((gt n m) #f)
         ((lt n m) #f)
         (else #t)))
+
+(define (pow n m)
+  (if (zero? m) 1 (mul n (pow n (sub1 m)))))
+
+(define (quot n m)
+  (if (< n m) 0 (add1 (quot (sub n m) m))))
