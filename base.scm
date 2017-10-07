@@ -47,3 +47,9 @@
         ((eq? old (car lat))
          (cons new (cons old (multi-insertL new old (cdr lat)))))
         (else (cons (car lat) (multi-insertL new old (cdr lat))))))
+
+(define (multi-subst new old lat)
+  (cond ((null? lat) '())
+        ((eq? old (car lat))
+         (cons new (multi-subst new old (cdr lat))))
+        (else (cons (car lat) (multi-subst new old (cdr lat))))))
