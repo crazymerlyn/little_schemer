@@ -30,3 +30,8 @@
   (cond ((null? lat) '())
         ((eq? old (car lat)) (cons new (cdr lat)))
         (else (cons (car lat) (subst new old (cdr lat))))))
+
+(define (multi-rember a lat)
+  (cond ((null? lat) '())
+        ((eq? a (car lat)) (multi-rember a (cdr lat)))
+        (else (cons (car lat) (multi-rember a (cdr lat))))))
