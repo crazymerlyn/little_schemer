@@ -54,3 +54,8 @@
   (cond ((null? l) (error "index too large -- pick"))
         ((zero? n) (car l))
         (else (pick (sub1 n) (cdr l)))))
+
+(define (rempick n l)
+  (cond ((null? l) (error "index too large -- pick"))
+        ((zero? n) (cdr l))
+        (else (cons (car l) (rempick (sub1 n) (cdr l))))))
