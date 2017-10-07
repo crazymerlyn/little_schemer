@@ -46,3 +46,11 @@
 
 (define (quot n m)
   (if (< n m) 0 (add1 (quot (sub n m) m))))
+
+(define (mylength l)
+  (if (null? l) 0 (add1 (mylength (cdr l)))))
+
+(define (pick n l)
+  (cond ((null? l) (error "index too large -- pick"))
+        ((zero? n) (car l))
+        (else (pick (sub1 n) (cdr l)))))
