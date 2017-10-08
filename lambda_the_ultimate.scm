@@ -44,3 +44,13 @@
             (lambda (newlat left right)
               (col (cons (car lat) newlat)
                    left right))))))
+
+(define (even? n) (equal? (mul (quot n 2) 2) n))
+(define (evens-only* l)
+  (cond ((null? l) '())
+        ((atom? (car l))
+         (cond ((even? (car l))
+                (cons (car l) (evens-only* (cdr l))))
+               (else (evens-only* (cdr l)))))
+        (else (cons (evens-only* (car l))
+                    (evens-only* (cdr l))))))
