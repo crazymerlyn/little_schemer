@@ -81,3 +81,6 @@
   (cond ((null? lat) 0)
         ((eq? a (car lat)) (add1 (occur a (cdr lat))))
         (else (occur a (cdr lat)))))
+
+(define (one? n)
+  (if (zero? n) #f (zero? (sub1 n))))
