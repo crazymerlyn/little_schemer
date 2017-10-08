@@ -32,3 +32,12 @@
              (cons (car l) (subst* new old (cdr l)))))
         (else (cons (subst* new old (car l))
                     (subst* new old (cdr l))))))
+
+(define (insertL* new old l)
+  (cond ((null? l) '())
+        ((atom? (car l))
+         (if (eq? old (car l))
+             (cons new (cons old (insertL* new old (cdr l))))
+             (cons (car l) (insertL* new old (cdr l)))))
+        (else (cons (insertL* new old (car l))
+                    (insertL* new old (cdr l))))))
