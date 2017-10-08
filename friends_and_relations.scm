@@ -3,3 +3,8 @@
   (cond ((null? l) #t)
         ((member? (car l) (cdr l)) #f)
         (else (set? (cdr l)))))
+
+(define (makeset l)
+  (cond ((null? l) '())
+        ((member? (car l) (cdr l)) (makeset (cdr l)))
+        (else (cons (car l) (makeset (cdr l))))))
