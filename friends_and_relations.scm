@@ -42,3 +42,9 @@
   (cond ((null? (cdr lset)) (car lset))
         (else (intersect (car lset)
                          (intersect-all (cdr lset))))))
+
+(define (a-pair? l)
+  (cond ((atom? l) #f)
+        ((null? l) #f)
+        ((null? (cdr l)) #f)
+        (else (null? (cddr l)))))
