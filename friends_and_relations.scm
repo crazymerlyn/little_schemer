@@ -52,3 +52,13 @@
 (define (first p) (car p))
 (define (second p) (cadr p))
 (define (build s1 s2) (cons s1 (cons s2 '())))
+
+(define (fun? rel)
+  (set? (firsts rel)))
+
+(define (revrel rel)
+  (if (null? rel)
+      '()
+      (cons (build (second (car rel))
+                   (first (car rel)))
+            (revrel (cdr rel)))))
