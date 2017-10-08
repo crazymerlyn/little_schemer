@@ -1,0 +1,5 @@
+(load "shadows.scm")
+(define (set? l)
+  (cond ((null? l) #t)
+        ((member? (car l) (cdr l)) #f)
+        (else (set? (cdr l)))))
