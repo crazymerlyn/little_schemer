@@ -8,3 +8,13 @@
         ((number? to-check)
          (keep-looking needle (pick to-check lat) lat))
         (else #f)))
+
+(define (shift l)
+  (build (first (first l)) (build (second (first l)) (second l))))
+
+(define (align pora)
+  (cond ((atom? pora) pora)
+        ((a-pair? (first pora))
+         (align (shift pora)))
+        (else (build (first pora)
+                     (align (second pora))))))
