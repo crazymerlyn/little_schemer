@@ -31,13 +31,13 @@
            new oldL oldR (cdr lat)
            (lambda (newlat left right)
              (col (cons new (cons oldL newlat))
-                  (+ left 1) right))))
+                  (add1 left) right))))
         ((eq? oldR (car lat))
          (multi-insertLR&co
            new oldL oldR (cdr lat)
            (lambda (newlat left right)
              (col (cons oldR (cons new newlat))
-                  left (+ right 1)))))
+                  left (add1 right)))))
         (else
           (multi-insertLR&co
             new oldL oldR (cdr lat)
