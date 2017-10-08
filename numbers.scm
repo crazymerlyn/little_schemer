@@ -69,3 +69,15 @@
   (cond ((null? lat) '())
         ((number? (car lat)) (cons (car lat) (all-nums (cdr lat))))
         (else (all-nums (cdr lat)))))
+
+(define (eqan? a b)
+  (cond ((and (number? a) (number? b))
+         (equal a b))
+        ((or (number? a) (number? b))
+         #f)
+        (else (eq? a b))))
+
+(define (occur a lat)
+  (cond ((null? lat) 0)
+        ((eq? a (car lat)) (add1 (occur a (cdr lat))))
+        (else (occur a (cdr lat)))))
