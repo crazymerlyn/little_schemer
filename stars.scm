@@ -1,0 +1,7 @@
+(load "base.scm")
+(define (rember* a l)
+  (cond ((null? l) '())
+        ((eq? a (car l)) (rember* a (cdr l)))
+        ((not (atom? (car l))) (cons (rember* a (car l))
+                                     (rember* a (cdr l))))
+        (else (cons (car l) (rember* a (cdr l))))))
