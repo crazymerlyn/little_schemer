@@ -5,7 +5,7 @@
         (else #f)))
 (define (member? a lat)
   (cond ((null? lat) #f)
-        (else (or (eq? a (car lat))
+        (else (or (equal? a (car lat))
                   (member? a (cdr lat))))))
 (define (rember a lat)
   (cond ((null? lat) '())
