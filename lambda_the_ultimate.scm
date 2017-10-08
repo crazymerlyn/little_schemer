@@ -54,3 +54,30 @@
                (else (evens-only* (cdr l)))))
         (else (cons (evens-only* (car l))
                     (evens-only* (cdr l))))))
+
+(define (evens-only*&co l col)
+  (cond ((null? l) (col '() 1 0))
+        ((atom? (car l))
+         (if (even? (car l))
+             (evens-only*&co
+               (cdr l)
+               (lambda (newl even-mul odd-sum)
+                 (col (cons (car l) newl)
+                      (mul even-mul (car l))
+                      odd-sum)))
+             (evens-only*&co
+               (cdr l)
+               (lambda (newl even-mul odd-sum)
+                 (col newl
+                      even-mul
+                      (add odd-sum (car l)))))))
+        (else
+          (evens-only*&co
+            (car l)
+            (lambda (newl even-mul odd-sum)
+              (evens-only*&co
+                (cdr l)
+                (lambda (newl-rest even-mul-rest odd-sum-rest)
+                  (col (cons newl newl-rest)
+                       (mul even-mul even-mul-rest)
+                       (add odd-sum odd-sum-rest)))))))))
