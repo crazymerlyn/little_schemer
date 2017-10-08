@@ -14,3 +14,12 @@
            (else (cons (car l) (insertR* new old (cdr l))))))
         (else (cons (insertR* new old (car l))
                     (insertR* new old (cdr l))))))
+
+(load "numbers.scm")
+(define (occur* a l)
+  (cond ((null? l) 0)
+        ((atom? (car l)) (if (eq? a (car l))
+                             (add1 (occur* a (cdr l)))
+                             (occur* a (cdr l))))
+        (else (add (occur* a (car l))
+                   (occur* a (cdr l))))))
