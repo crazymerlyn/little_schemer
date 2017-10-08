@@ -23,3 +23,12 @@
                              (occur* a (cdr l))))
         (else (add (occur* a (car l))
                    (occur* a (cdr l))))))
+
+(define (subst* new old l)
+  (cond ((null? l) '())
+        ((atom? (car l))
+         (if (eq? old (car l))
+             (cons new (subst* new old (cdr l)))
+             (cons (car l) (subst* new old (cdr l)))))
+        (else (cons (subst* new old (car l))
+                    (subst* new old (cdr l))))))
