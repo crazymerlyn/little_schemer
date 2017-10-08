@@ -1,0 +1,5 @@
+(load "stars.scm")
+(define (numbered? l)
+  (cond ((atom? l) (number? l))
+        (else (and (numbered? (car l))
+                   (numbered? (caddr l))))))
