@@ -41,3 +41,10 @@
              (cons (car l) (insertL* new old (cdr l)))))
         (else (cons (insertL* new old (car l))
                     (insertL* new old (cdr l))))))
+
+(define (member* a l)
+  (cond ((null? l) #f)
+        ((atom? (car l))
+         (or (eq? a (car l)) (member* a (cdr l))))
+        (else (or (member* a (car l))
+                  (member* a (cdr l))))))
