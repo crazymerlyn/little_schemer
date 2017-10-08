@@ -48,3 +48,8 @@
          (or (eq? a (car l)) (member* a (cdr l))))
         (else (or (member* a (car l))
                   (member* a (cdr l))))))
+
+(define (leftmost l)
+  (if (atom? (car l))
+      (car l)
+      (leftmost (car l))))
