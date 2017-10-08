@@ -48,3 +48,7 @@
         ((null? l) #f)
         ((null? (cdr l)) #f)
         (else (null? (cddr l)))))
+
+(define (first p) (car p))
+(define (second p) (cadr p))
+(define (build s1 s2) (cons s1 (cons s2 '())))
