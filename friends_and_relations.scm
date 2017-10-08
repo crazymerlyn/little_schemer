@@ -62,3 +62,6 @@
       (cons (build (second (car rel))
                    (first (car rel)))
             (revrel (cdr rel)))))
+
+(define (fullfun? fun)
+  (set? (seconds fun)))

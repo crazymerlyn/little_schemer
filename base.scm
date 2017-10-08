@@ -16,6 +16,10 @@
   (cond ((null? l) '())
         (else (cons (caar l) (firsts (cdr l))))))
 
+(define (seconds l)
+  (cond ((null? l) '())
+        (else (cons (cadar l) (seconds (cdr l))))))
+
 (define (insertR new old lat)
   (cond ((null? lat) '())
         ((equal? old (car lat)) (cons (car lat) (cons new (cdr lat))))
