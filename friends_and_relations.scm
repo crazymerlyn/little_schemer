@@ -37,3 +37,8 @@
         ((member? (car s1) s2)
          (union (cdr s1) s2))
         (else (cons (car s1) (union (cdr s1) s2)))))
+
+(define (intersect-all lset)
+  (cond ((null? (cdr lset)) (car lset))
+        (else (intersect (car lset)
+                         (intersect-all (cdr lset))))))
