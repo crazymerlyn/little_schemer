@@ -6,5 +6,6 @@
 
 (define (makeset l)
   (cond ((null? l) '())
-        ((member? (car l) (cdr l)) (makeset (cdr l)))
-        (else (cons (car l) (makeset (cdr l))))))
+        (else (cons (car l)
+                    (makeset
+                      (multi-rember (car l) (cdr l)))))))
