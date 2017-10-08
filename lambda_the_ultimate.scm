@@ -22,3 +22,25 @@
 (define (subst-f test?)
   (insert-f test? (lambda (new old lat)
                     (cons new lat))))
+
+(define (multi-insertLR&co new oldL oldR lat col)
+  (cond ((null? lat)
+         (col '() 0 0))
+        ((eq? oldL (car lat))
+         (multi-insertLR&co
+           new oldL oldR (cdr lat)
+           (lambda (newlat left right)
+             (col (cons new (cons oldL newlat))
+                  (+ left 1) right))))
+        ((eq? oldR (car lat))
+         (multi-insertLR&co
+           new oldL oldR (cdr lat)
+           (lambda (newlat left right)
+             (col (cons oldR (cons new newlat))
+                  left (+ right 1)))))
+        (else
+          (multi-insertLR&co
+            new oldL oldR (cdr lat)
+            (lambda (newlat left right)
+              (col (cons (car lat) newlat)
+                   left right))))))
