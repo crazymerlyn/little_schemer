@@ -9,3 +9,13 @@
         (else (cons (car l)
                     (makeset
                       (multi-rember (car l) (cdr l)))))))
+
+(define (subset? s1 s2)
+  (if (null? s1)
+      #t
+      (and (member? (car s1) s2)
+           (subset? (cdr s1) s2))))
+
+(define (eqset? s1 s2)
+  (and (subset? s1 s2)
+       (subset? s2 s1)))
