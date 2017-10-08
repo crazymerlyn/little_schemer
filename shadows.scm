@@ -6,16 +6,15 @@
 
 (define (value nexp)
   (cond ((atom? nexp) nexp)
-        ((eq? (operator nexp) '+)
-         (add (value (first-sub-exp nexp))
-              (value (second-sub-exp nexp))))
-        ((eq? (operator nexp) '*)
-         (mul (value (first-sub-exp nexp))
-              (value (second-sub-exp nexp))))
-        (else
-         (pow (value (first-sub-exp nexp))
-              (value (second-sub-exp nexp))))))
+        (else ((atom-to-function (operator nexp))
+               (value (first-sub-exp nexp))
+               (value (second-sub-exp nexp))))))
 
 (define (first-sub-exp nexp) (cadr nexp))
 (define (second-sub-exp nexp) (caddr nexp))
 (define (operator nexp) (car nexp))
+
+(define (atom-to-function x)
+  (cond ((eq? x '+) add)
+        ((eq? x '*) mul)
+        (else pow)))
